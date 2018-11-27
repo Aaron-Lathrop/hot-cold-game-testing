@@ -10,6 +10,8 @@ import StatusSection from './status-section';
 
 describe('<StatusSection />', () => {
     it('Renders without crashing', () => {
-        shallow(<StatusSection />);
+        const guesses = [1, 2, 3, 4, 5];
+        const auralStatus = 'Foobar';
+        shallow(<StatusSection guesses={guesses} auralStatus={auralStatus} />);
     });
 });
