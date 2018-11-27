@@ -12,4 +12,9 @@ describe('<TopNav />', () => {
     it('Renders without crashing', () => {
         shallow(<TopNav />);
     });
+
+    it('Renders expected elements', () => {
+        const wrapper = mount(<TopNav />);
+        expect(wrapper.exists('.clearfix', '.what', '.new')).toEqual(true);
+    });
 });
