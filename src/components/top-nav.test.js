@@ -14,7 +14,7 @@ describe('<TopNav />', () => {
     });
 
     it('Renders expected elements', () => {
-        const wrapper = mount(<TopNav />);
+        const wrapper = shallow(<TopNav />);
         expect(wrapper.exists('.clearfix', '.what', '.new')).toEqual(true);
     });
 });

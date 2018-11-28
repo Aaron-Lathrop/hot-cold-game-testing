@@ -26,4 +26,12 @@ describe('<GuessForm />', () => {
         wrapper.simulate('submit');
         expect(callback).toHaveBeenCalledWith(value);
     });
+
+    it('Should reset the input when form is submitted', () => {
+        const wrapper = mount(<GuessForm />);
+        const input = wrapper.find('input[type="number"]');
+        input.instance().value = 5;
+        wrapper.simulate('submit');
+        expect(input.instance().value).toEqual('');
+    });
 });
