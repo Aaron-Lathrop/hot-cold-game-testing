@@ -13,4 +13,10 @@ describe('<AuralStatus />', () => {
         const auralStatus = 'Foobar';
         shallow(<AuralStatus auralStatus={auralStatus}/>);
     });
+
+    it('Renders an auralStatus update', () => {
+        const update = "Check it out now, the funk's soul brother.";
+        const wrapper =  shallow(<AuralStatus auralStatus={update}/>);
+        expect(wrapper.contains(update)).toEqual(true);
+    });
 });

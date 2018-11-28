@@ -46,21 +46,42 @@ describe('<Game />', () => {
 
     it('Should give correct feedback and guessCount after makeGuess is called with a valid number', () => {
         const wrapper = shallow(<Game />);
-        const guess = 5;
-        wrapper.instance().makeGuess(guess);
-        expect(wrapper.state('feedback')).not.toEqual('Please enter a valid number');
-        expect(wrapper.state('feedback')).not.toEqual('Make your guess!');
-        expect(wrapper.state('guesses')).toEqual([5]);
+        const guess = [50, 70, 90, 99, 100];
+        wrapper.setState({correctAnswer: 100})
+        wrapper.instance().makeGuess(50);
+        expect(wrapper.state('feedback')).toEqual('You\'re Ice Cold...');
+        expect(wrapper.state('guesses')).toEqual([50]);
         wrapper.update();
-        expect(wrapper.find(GuessSection).prop('feedback')).not.toEqual('Please enter a valid number');
+        expect(wrapper.find(GuessSection).prop('feedback')).toEqual('You\'re Ice Cold...');
         expect(wrapper.find(GuessSection).prop('guessCount')).toEqual(1);
-    });
 
-    it('Should give correct feedback when correct guess is made', () => {
-        const wrapper = shallow(<Game />);
-        const guess = wrapper.state('correctAnswer');
-        wrapper.instance().makeGuess(guess);
+        wrapper.instance().makeGuess(70);
+        expect(wrapper.state('feedback')).toEqual('You\'re Cold...');
+        expect(wrapper.state('guesses')).toEqual([50, 70]);
+        wrapper.update();
+        expect(wrapper.find(GuessSection).prop('feedback')).toEqual('You\'re Cold...');
+        expect(wrapper.find(GuessSection).prop('guessCount')).toEqual(2);
+
+        wrapper.instance().makeGuess(90);
+        expect(wrapper.state('feedback')).toEqual('You\'re Warm.');
+        expect(wrapper.state('guesses')).toEqual([50, 70, 90]);
+        wrapper.update();
+        expect(wrapper.find(GuessSection).prop('feedback')).toEqual('You\'re Warm.');
+        expect(wrapper.find(GuessSection).prop('guessCount')).toEqual(3);
+
+        wrapper.instance().makeGuess(99);
+        expect(wrapper.state('feedback')).toEqual('You\'re Hot!');
+        expect(wrapper.state('guesses')).toEqual([50, 70, 90, 99]);
+        wrapper.update();
+        expect(wrapper.find(GuessSection).prop('feedback')).toEqual('You\'re Hot!');
+        expect(wrapper.find(GuessSection).prop('guessCount')).toEqual(4);
+
+        wrapper.instance().makeGuess(100);
         expect(wrapper.state('feedback')).toEqual('You got it!');
+        expect(wrapper.state('guesses')).toEqual([50, 70, 90, 99, 100]);
+        wrapper.update();
+        expect(wrapper.find(GuessSection).prop('feedback')).toEqual('You got it!');
+        expect(wrapper.find(GuessSection).prop('guessCount')).toEqual(5);
     });
 
     it('Should reset to initial state when onRestartGame() is called', () => {
@@ -76,11 +97,12 @@ describe('<Game />', () => {
     it('Should update auralStatus when generateAuralUpdate() is called', () => {
         const wrapper = mount(<Game />);
         const guess = [5, 1];
+        wrapper.setState({correctAnswer: 100});
         expect(wrapper.state('auralStatus')).toEqual('');
         wrapper.instance().makeGuess(guess[0]);
         wrapper.instance().makeGuess(guess[1]);
         wrapper.update();
         wrapper.find('a[href="#get-status"]').simulate('click');
-        expect(wrapper.state('auralStatus')).not.toEqual('');
+        expect(wrapper.state('auralStatus')).toEqual(`Here's the status of the game right now: You're Ice Cold... You've made 2 guesses. In order of most- to least-recent, they are: 1, 5`);
     });
 });

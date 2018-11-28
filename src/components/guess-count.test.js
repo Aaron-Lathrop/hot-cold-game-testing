@@ -13,4 +13,9 @@ describe('<GuessCount />', () => {
         const guessCount = 5;
         shallow(<GuessCount guessCount={guessCount} />);
     });
+
+    it('Renders the correct guessCount', () => {
+        const guessCount = 5;
+        const wrapper = shallow(<GuessCount guessCount={guessCount} />);
+    });
 });

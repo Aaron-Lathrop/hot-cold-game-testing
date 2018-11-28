@@ -14,4 +14,10 @@ describe('<Feedback />', () => {
         const guessCount = 5;
         shallow(<Feedback feedback={feedback} guessCount={guessCount} />);
     });
+
+    it('Renders some feedback and guessCount', () => {
+        const feedback = 'Foobar';
+        const wrapper = shallow(<Feedback feedback={feedback} />);
+        expect(wrapper.contains(feedback)).toEqual(true);
+    });
 });
