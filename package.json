@@ -22,7 +22,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "description": "[GitHub](https://github.com/Aaron-Lathrop/hot-cold-game-testing.git)",
+  "description": "[GitHub](https://github.com/Aaron-Lathrop/hot-cold-game-testing)",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Thinkful-Ed/react-hot-cold/issues"
+    "url": "https://github.com/Aaron-Lathrop/hot-cold-game-testing/issues"
   },
-  "homepage": "https://github.com/Thinkful-Ed/react-hot-cold#readme"
+  "homepage": "https://github.com/Aaron-Lathrop/hot-cold-game-testing#readme"
 }
